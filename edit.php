@@ -1,6 +1,8 @@
 <?php
 	require("/home/brigkann/config.php");
 	
+	include "functions.php";
+	
 	$database = "if16_brigitta";
 	
 	if(isset($_POST["update"])){

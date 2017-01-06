@@ -119,7 +119,7 @@ function getSingleMovieData($synopsis, $actors) {
 
 $mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
 		
-		$stmt = $this->connection->prepare("SELECT m_synopsis, m_actors FROM m_movies WHERE id=?");
+		$stmt=$mysqli->prepare("SELECT m_synopsis, m_actors FROM m_movies WHERE id=?");
 		$stmt->bind_param("ss" ,$synopsis, $actors);
 		$stmt->bind_result($synopsis, $actors);
 		$stmt->execute();
