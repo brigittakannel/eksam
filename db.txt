@@ -5,14 +5,15 @@ CREATE TABLE m_user(
 );
 	
 CREATE TABLE m_movies(
-	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	id INT NOT PRIMARY KEYNULL AUTO_INCREMENT,
 	m_title VARCHAR(255),
-	m_actors VARCHAR(500),
+	m_actors VARCHAR(500) 
 	m_synopsis VARCHAR(500),
 	m_rating float
 );
 
 CREATE TABLE m_actors(
 	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT
-	actors
-);
+	actors_id INT NOT NULL,
+	FOREIGN KEY(actors_id) REFERENCES m_movies(id)
+);	

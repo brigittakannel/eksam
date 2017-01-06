@@ -12,12 +12,10 @@
 		isset($_POST["actors"])){
 	updateMovie($id, cleanInput($_POST["synopsis"]), cleanInput($_POST["actors"]));
 	}
-	//header("Location: edit.php?id=".$_POST["id"]."&success=true");
+	//header("Location: edit.php?id=".$id."&success=true");
 	//exit();	
 	
 
-//$c = getSingleMovieData($_POST["synopsis"], $_POST["actors"]);
-	//var_dump($c);
 $synopsis="";
 $actors="";
 ?>
@@ -25,8 +23,8 @@ $actors="";
 <a href="movies.php"> back </a>
 
 <h2>Edit info</h2>
-  <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" >
-	<input type="hidden" name="id" value="<?=$_GET["id"];?>" > 
+  <form method="post" >
+	 
   	<label for="synopsis" >synopsis</label><br>
 	<textarea  id="synopsis" name="synopsis"><?php echo $synopsis;?></textarea><br>
   	<label for="actors" >actors</label><br>

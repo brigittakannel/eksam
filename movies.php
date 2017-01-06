@@ -60,13 +60,6 @@ foreach($result as $item) {
 		echo "<br>";
 		echo $item->rating;
 	
-
-if(isset($_SESSION["userId"])): ?>
-	<form method="get" action="edit.php">
-		<input type="hidden" name="movieId" value="<?=$item->id?>">
-		<input type="submit" name="edit-btn" value="edit" onclick="location.href='edit.php?id=<?php$item->id?>;">
-	</form>
-<?php endif;
-		echo '</div></div>';
+echo "<a href='edit.php?id=".$item->id."'>edit</a>";
 }
-
+?>

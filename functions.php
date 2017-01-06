@@ -159,10 +159,10 @@ function cleanInput ($input) {
 	return $input;
 }
 function updateMovie($id, $synopsis, $actors){
-		
+		//echo $synopsis;
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
 		
-		$stmt = $mysqli->prepare("UPDATE m_movies SET synopsis=? AND actors=? WHERE id=?");
+		$stmt = $mysqli->prepare("UPDATE m_movies SET m_synopsis=? AND m_actors=? WHERE id=?");
 		$stmt->bind_param("ssi",$synopsis, $actors, $id);
 		
 
