@@ -1,9 +1,10 @@
 <?php
-require("functions.php")
+require("functions.php");
 
-if(isset ($_SESSION["userId"])) {
+	if(isset ($_SESSION["userId"])) {
 		header("Location: movies.php");
 		exit();
+	}
 
 $signupEmailError="";
 $signupEmail = "";

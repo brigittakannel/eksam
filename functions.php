@@ -1,5 +1,5 @@
 <?php
-	require("../../../config.php");
+	require("/home/brigkann/config.php");
 	session_start();
 
 	$database = "if16_brigitta";
@@ -114,6 +114,37 @@ function getAllMovies() 	{
 		return $result;
 		
 	}
+	
+function getSingleMovieData($synopsis, $actors);
+
+$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
+		
+		$stmt = $this->connection->prepare("SELECT m_synopsis, m_actors FROM m_movies WHERE id=?");
+		$stmt->bind_param("i", $edit_id);
+		$stmt->bind_result($synopsis, $actors);
+		$stmt->execute();
+		
+
+		$n = new Stdclass();
+	
+		if($stmt->fetch()){
+		
+			$s->synopsis = $synopsis;
+			$a->actors = $actors;
+			
+			
+		}else{
+			
+			header("Location: movies.php");
+			exit();
+		}
+		
+		$stmt->close();
+		$mysqli->close();
+		
+		return $n;
+		
+	}
 
 function cleanInput ($input) {
 	
@@ -125,4 +156,22 @@ function cleanInput ($input) {
 	
 	return $input;
 }
+function updateNote($id, $synopsis){
+		
+		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
+		
+		$stmt = $mysqli->prepare("UPDATE m_movies SET synopsis=?, actors=? WHERE id=? AND deleted IS NULL");
+		$stmt->bind_param("si",$synopsis, $id);
+		
+
+		if($stmt->execute()){
+		
+			echo "saving success!";
+		}
+		
+		$stmt->close();
+		$mysqli->close();
+		
+	}
+	
 ?>
