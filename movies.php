@@ -46,7 +46,7 @@
 <?php
 
 $result = getAllMovies();
-
+//var_dump($result);
 foreach($result as $item) {
 
 		echo '<div style="display:flex;width:33%;margin-bottom:5px;"><div style="background-color:rgba
@@ -62,9 +62,9 @@ foreach($result as $item) {
 	
 
 if(isset($_SESSION["userId"])): ?>
-	<form method="get" action="movies.php">
+	<form method="get" action="edit.php">
 		<input type="hidden" name="movieId" value="<?=$item->id?>">
-		<input type="submit" name="edit-btn" value="edit" onclick="location.href='edit.php?movieId=<?php$item->id?>;">
+		<input type="submit" name="edit-btn" value="edit" onclick="location.href='edit.php?id=<?php$item->id?>;">
 	</form>
 <?php endif;
 		echo '</div></div>';

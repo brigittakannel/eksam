@@ -93,16 +93,18 @@ function getAllMovies() 	{
 		
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
 		
-		$stmt = $mysqli->prepare("SELECT m_title, m_actors, M_synopsis, m_rating FROM m_movies");
+		$stmt = $mysqli->prepare("SELECT id, m_title, m_actors, M_synopsis, m_rating FROM m_movies");
 		
-		$stmt->bind_result($title, $actors, $synopsis, $rating);
+		$stmt->bind_result($id, $title, $actors, $synopsis, $rating);
 		$stmt->execute();
 		
 		$result = array();
 	
+	
 		while($stmt->fetch()) {
 		
 			$object = new StdClass();
+			$object->id=$id;
 			$object->title = $title;
 			$object->actors = $actors;
 			$object->synopsis = $synopsis;
@@ -156,12 +158,12 @@ function cleanInput ($input) {
 	
 	return $input;
 }
-function updateMovie($id, $synopsis){
+function updateMovie($id, $synopsis, $actors){
 		
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
 		
-		$stmt = $mysqli->prepare("UPDATE m_movies SET synopsis=?, actors=? WHERE id=? AND deleted IS NULL");
-		$stmt->bind_param("si",$synopsis, $id);
+		$stmt = $mysqli->prepare("UPDATE m_movies SET synopsis=? AND actors=? WHERE id=?");
+		$stmt->bind_param("ssi",$synopsis, $actors, $id);
 		
 
 		if($stmt->execute()){
