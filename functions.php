@@ -115,12 +115,12 @@ function getAllMovies() 	{
 		
 	}
 	
-function getSingleMovieData($synopsis, $actors);
+function getSingleMovieData($synopsis, $actors) {
 
 $mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
 		
 		$stmt = $this->connection->prepare("SELECT m_synopsis, m_actors FROM m_movies WHERE id=?");
-		$stmt->bind_param("i", $edit_id);
+		$stmt->bind_param("ss" ,$synopsis, $actors);
 		$stmt->bind_result($synopsis, $actors);
 		$stmt->execute();
 		
@@ -156,7 +156,7 @@ function cleanInput ($input) {
 	
 	return $input;
 }
-function updateNote($id, $synopsis){
+function updateMovie($id, $synopsis){
 		
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
 		
@@ -173,5 +173,13 @@ function updateNote($id, $synopsis){
 		$mysqli->close();
 		
 	}
-	
+
+function actorData() {
+	$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
+		
+		$stmt = $this->connection->prepare("SELECT m_actor FROM m_movies WHERE id=?");
+		$stmt->bind_param("s", $actors);
+		$stmt->bind_result($actors);
+		$stmt->execute();
+}
 ?>
