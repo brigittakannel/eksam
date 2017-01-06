@@ -1,0 +1,18 @@
+CREATE TABLE m_user(
+	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	email VARCHAR(255),
+	password VARCHAR(128)
+);
+	
+CREATE TABLE m_movies(
+	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	m_title VARCHAR(255),
+	m_actors VARCHAR(500),
+	m_synopsis VARCHAR(500),
+	m_rating float
+);
+
+CREATE TABLE m_actors(
+	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT
+	actors
+);
